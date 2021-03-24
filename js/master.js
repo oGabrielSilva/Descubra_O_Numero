@@ -78,24 +78,24 @@ function alertPop() {
         case 1:
             alertAux = 'Número inválido. Tente algo entre 1 e 10.'
             outAlert.textContent = alertAux
-            alertDisplay.style.display = 'block'
+            alertDisplay.style.display = 'flex'
             break;
         case 2:
             alertAux = 'Você já tentou esse número.'
             outAlert.textContent = alertAux
-            alertDisplay.style.display = 'block'
+            alertDisplay.style.display = 'flex'
             break
         case 3:
             alertAux = 'Parabéns! Você acertou. Clique em "OK" para jogar novamente.'
             outAlert.textContent = alertAux
-            alertDisplay.style.display = 'block'
+            alertDisplay.style.display = 'flex'
             btAux = true
             valueOut()
             break
         case 4:
             alertAux = 'Infelizmente suas chances acabaram. Clique em "OK" para jogar novamente.'
             outAlert.textContent = alertAux
-            alertDisplay.style.display = 'block'
+            alertDisplay.style.display = 'flex'
             btAux = true
             valueOut()
             break
