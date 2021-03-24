@@ -4,18 +4,19 @@ let value
 let dica
 let tryC = 3
 let alertAux
+let btAux = false
 numbers = []
 
 function start() {
     let listNum = ``
-    const inNumber = document.querySelector('#inNumber') 
+    const inNumber = document.querySelector('#inNumber')
     let number = parseFloat(inNumber.value)
-    
+
     if (isNaN(number)) {
         inNumber.focus()
         return
     }
-    
+
     if (number > 10 || number < 1) {
         alertAux = 1
         alertPop()
@@ -23,11 +24,7 @@ function start() {
         inNumber.focus()
         return
     }
-    
-    if (number != value) {
-        tryC--
-    }
-    
+
     switch (numbers.indexOf(number)) {
         case -1:
             numbers.push(number)
@@ -42,10 +39,14 @@ function start() {
             inNumber.focus()
             return
     }
-    
+
+    if (number != value) {
+        tryC--
+    }
+
     listNum += numbers.join(', ')
     outDica.textContent = `Tente um número ${dica} do que ${number}. Chances: ${tryC}`
-    
+
     if (number == value) {
         valueOut()
         numbers = []
@@ -56,7 +57,7 @@ function start() {
         inNumber.focus()
         return
     }
-    
+
     display.value = listNum
     tryCF()
 }
@@ -69,7 +70,7 @@ function tryCF() {
         inNumber.focus()
         alertPop()
     }
-    
+
 }
 
 function alertPop() {
@@ -79,7 +80,7 @@ function alertPop() {
             outAlert.textContent = alertAux
             alertDisplay.style.display = 'block'
             break;
-        case 2: 
+        case 2:
             alertAux = 'Você já tentou esse número.'
             outAlert.textContent = alertAux
             alertDisplay.style.display = 'block'
@@ -88,12 +89,14 @@ function alertPop() {
             alertAux = 'Parabéns! Você acertou. Clique em "OK" para jogar novamente.'
             outAlert.textContent = alertAux
             alertDisplay.style.display = 'block'
+            btAux = true
             valueOut()
             break
-        case 4: 
+        case 4:
             alertAux = 'Infelizmente suas chances acabaram. Clique em "OK" para jogar novamente.'
             outAlert.textContent = alertAux
             alertDisplay.style.display = 'block'
+            btAux = true
             valueOut()
             break
     }
@@ -107,8 +110,11 @@ valueOut()
 
 const bt = document.querySelector('#bt').addEventListener('click', () => {
     alertDisplay.style.display = 'none'
-    display.value = ``
-    outDica.textContent = ``
-    numbers = []
-    tryC = 3
+    if (btAux == true) {
+      display.value = ``
+      outDica.textContent = ``
+      numbers = []
+      tryC = 3
+      btAux = false
+    }
 })
